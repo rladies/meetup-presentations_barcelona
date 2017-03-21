@@ -4,18 +4,18 @@ This document links the materials of the sessions held by R-Ladies BCN.
 
 ## Past events
   1. Primer evento de R-Ladies Barcelona
-    + *November 21st, 2016*
+       + *November 21st, 2016*
   2. Scalable Machine Learning in R and Python with H2O
-    + *December 5th, 2016*
+       + *December 5th, 2016*
   3. RMarkdown tutorial and bioinformatics talk
-    + *January 16th, 2017*
-    + https://github.com/rladies/barcelona_20170116_rmarkdown
+     + *January 16th, 2017*
+     + https://github.com/rladies/barcelona_20170116_rmarkdown
   4. Google Analytics in R!
-    + *February 20th, 2017*
+     + *February 20th, 2017*
   5. Cleaning wrangling with `dplyr` and `tidyr`.
-    + *March 20th, 2017*. 
-    + https://github.com/rladies/bcn_20170320_introtodplyrtidyr
+     + *March 20th, 2017*. 
+     + https://github.com/rladies/bcn_20170320_introtodplyrtidyr
     
 ## Upcoming events
   6. `rbokeh`introduction. 
-    + *April 24th, 2017*
+     + *April 24th, 2017*

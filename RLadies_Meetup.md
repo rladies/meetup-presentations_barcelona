@@ -7,6 +7,7 @@ This document links the materials of the sessions held by R-Ladies BCN.
        + *November 21st, 2016*
   2. Scalable Machine Learning in R and Python with H2O
        + *December 5th, 2016*
+       + https://github.com/h2oai/h2o-tutorials#r-tutorials
   3. RMarkdown tutorial and bioinformatics talk
      + *January 16th, 2017*
      + https://github.com/rladies/barcelona_20170116_rmarkdown

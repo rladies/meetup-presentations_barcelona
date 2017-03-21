@@ -12,7 +12,7 @@ This document links the materials of the sessions held by R-Ladies BCN.
      + https://github.com/rladies/barcelona_20170116_rmarkdown
   4. Google Analytics in R!
      + *February 20th, 2017*
-  5. Cleaning wrangling with `dplyr` and `tidyr`.
+  5. Data wrangling with `dplyr` and `tidyr`.
      + *March 20th, 2017*. 
      + https://github.com/rladies/bcn_20170320_introtodplyrtidyr
     

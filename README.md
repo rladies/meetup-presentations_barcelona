@@ -20,11 +20,13 @@ This document links the materials of the sessions held by R-Ladies BCN.
       + *March 20th, 2017*. 
       + Presented by [Dr. Maëlle Salmon](http://www.masalmon.eu/)
       + Materials: https://github.com/rladies/bcn_20170320_introtodplyrtidyr
-    
-## Upcoming events
   6. **`rbokeh`introduction.**
       + *April 24th, 2017*
+      + Presented by [Elena He](http://twitter.com/mikanchu)
+      + Materials: https://github.com/rladies/bcn_20170424_rbokeh
+
+## Upcoming events
 
 ---
 
-:ant: Rmigas: R-Ladies Barcelona resources :ant:
+__*Rmigas*__: R-Ladies Barcelona resources :ant::ant:

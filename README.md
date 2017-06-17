@@ -24,6 +24,10 @@ This document links the materials of the sessions held by R-Ladies BCN.
       + *April 24th, 2017*
       + Presented by [Elena He](http://twitter.com/mikanchu)
       + Materials: https://github.com/rladies/bcn_20170424_rbokeh
+  7. **Bioinformatics with R.**
+      + *June 12th, 2017*
+      + Presented by [Ania Alay](http://twitter.com/aniusbananius)
+      + Materials: https://github.com/rladies/bcn_20170612_bioinformatics
 
 ## Upcoming events
 

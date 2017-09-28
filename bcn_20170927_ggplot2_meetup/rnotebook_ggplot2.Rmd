@@ -1,0 +1,231 @@
+---
+title: "Plots with ggplot2 are better plots!"
+output: html_notebook
+---
+
+# Recomended packages
+```{r}
+install.packages("reshape2", "cowplot", "ggrepel")
+```
+
+# Example dataset: Temperature in Barcelona (1780-2017)
+## Data
+We are going to use a dataset from [Servei Meteorològic de Catalunya](http://www.meteo.cat/wpweb/climatologia/serveis-i-dades-climatiques/serie-climatica-historica-de-barcelona/) describing the mean temperature per month from 1780 to 2017.^[Prohom M, Barriendos, Aguilar E, Ripoll R (2012): Recuperación y análisis de la serie de temperatura diaria de Barcelona, 1780-2011. Cambio Climático. Extremos e Impactos, Asociación Española de Climatología, Serie A, Vol. 8, 207–217]. 
+
+The file that we downloaded has 13 columns: the first one represents the year and the 2nd to the 13th the month. As you can observe, this is a data.frame in wide format, so we will have to convert it to long format. Temperature values are in ºC.
+
+```{r load-data}
+meteo <- read.delim("data/Barcelona_TM_m_1780_2017.txt", header=FALSE)
+head(meteo)
+
+## Add column names
+colnames(meteo) <- c("year", "January", "February", "March", "April", "May", "June",
+                     "July", "August", "September", "October", "November", "December")
+
+head(meteo)
+
+## Convert to long format
+meteo.long <- reshape2::melt(meteo,
+                             id.vars=1,
+                             measure.vars=2:ncol(meteo),
+                             variable.name="month",
+                             value.name="temperature")
+head(meteo.long)
+
+## Include a column with season
+seasons <- data.frame("month"=unique(meteo.long$month),
+                      "season"=c(rep("Winter", 2),
+                                 rep("Spring", 3),
+                                 rep("Summer", 3),
+                                 rep("Fall", 3),
+                                 "Winter")
+                      )
+meteo.long <- merge(meteo.long, seasons)
+
+## Remove NAs (corresponding to Sept-Dec 2017)
+meteo.long <- meteo.long[!is.na(meteo.long$temperature),]
+
+head(meteo.long)
+
+```
+
+## Average temperature per month
+
+```{r boxplot}
+library(cowplot)
+
+ave <- ggplot(meteo.long, aes(month, temperature)) +
+        geom_boxplot()
+
+ave
+
+# Add some more parameters to make it look nicer
+ave <- ggplot(meteo.long, aes(month, temperature, color=season)) +
+        geom_boxplot(lwd=1) +
+        theme(legend.position = "top",
+              axis.text.x = element_text(angle=30, vjust=1, hjust=1))
+ave
+
+## Change colors
+scale_season <- c("Fall"="sienna4",
+                  "Spring"="springgreen4",
+                  "Summer"="yellow3",
+                  "Winter"="navy")
+
+ave <- ave + 
+        scale_color_manual(values=scale_season)
+ave
+
+## Add title and change labs
+ave <- ave + 
+        ggtitle("Average Temperature in Barcelona") +
+        xlab("Month") +
+        ylab("Temperature (ºC)")
+ave
+```
+
+
+```{r violin-plot}
+ggplot(meteo.long, aes(month, temperature)) +
+  geom_violin(aes(color=season), lwd=1) +
+  theme(legend.position = "top",
+        axis.text.x = element_text(angle=30, vjust=1, hjust=1)) +
+  scale_color_manual(values=c(scale_season)) +
+  ggtitle("Average Temperature in Barcelona") +
+        xlab("Month") +
+        ylab("Temperature (ºC)")
+
+## Maybe fill the violin instead of border?
+ggplot(meteo.long, aes(month, temperature)) +
+  geom_violin(aes(fill=season), lwd=1, alpha=0.7) +
+  theme(legend.position = "top",
+        axis.text.x = element_text(angle=30, vjust=1, hjust=1)) +
+  scale_fill_manual(values=scale_season,
+                    name="Season") +
+  ggtitle("Average Temperature in Barcelona") +
+        xlab("Month") +
+        ylab("Temperature (ºC)")
+
+```
+
+## Correlation between temperatures
+```{r}
+## Select year 1780 and 2016
+meteo.extreme <- meteo.long[meteo.long$year==1780 |
+                              meteo.long$year==2016,]
+
+## Add two columns with temperature values
+meteo.extreme.wide <- reshape2::dcast(meteo.extreme,
+                                      month + season ~year, 
+                                      value.var="temperature")
+colnames(meteo.extreme.wide)[3:4] <- paste0("temperature.", colnames(meteo.extreme.wide)[3:4])
+
+## Indclude a column with the difference in temperature
+meteo.extreme.wide$temperature.difference <- meteo.extreme.wide$temperature.2016 - meteo.extreme.wide$temperature.1780
+
+cor <- ggplot(meteo.extreme.wide, aes(temperature.1780, temperature.2016)) +
+        geom_point(aes(color=season), size=3, alpha=0.7) +
+        geom_text(aes(label=month))
+cor
+
+## ggrepel!! and add size as aesthetic!
+cor <- ggplot(meteo.extreme.wide, aes(temperature.1780, temperature.2016)) +
+          geom_point(aes(color=season, size=temperature.difference)) +
+          ggrepel::geom_text_repel(aes(label=month))
+cor
+
+## Modify scales to be the same and change colors
+cor <- cor + 
+        scale_color_manual(values=scale_season, 
+                           name="Season") +
+        scale_size_continuous(name="Temperature \n Difference") +
+        xlim(5, 25) + 
+        ylim(5, 25)
+cor
+
+## Add line
+cor <- cor + 
+        geom_smooth(colour = "dark red", size = 0.5, alpha=0.3)
+cor
+
+## Add line for perfect correlation
+cor <- cor + 
+        geom_abline(intercept = 0, slope=1,
+                    colour = "red", lty=2)
+cor
+```
+
+If you want the points to be on top of the lines, just change the order of the geoms!
+
+## Distribution of temperatures
+```{r histogram}
+ggplot(meteo.long, aes(temperature)) +
+  geom_histogram() +
+  facet_wrap(~season)
+```
+
+```{r density plot}
+ggplot(meteo.long, aes(temperature)) +
+  geom_density()
+
+## But we want to see different distributions according to seasons!
+ggplot(meteo.long, aes(temperature)) +
+  geom_density(aes(color=season, fill=season), lwd=1, alpha=0.2) +
+  scale_color_manual(values=scale_season) +
+  scale_fill_manual(values=scale_season)
+
+```
+
+# Your turn! ChickWeight dataset
+## Data
+Load the dataset using `data("ChickWeight")` and explore the data with `View(ChickWeight)`. The description of the column values can be found typing `?ChickWeight`
+
+## Exercise: Distributions
+### Plot a histogram of weight distributions, faceting according to the Diet.
+```{r}
+ggplot(ChickWeight, aes(weight)) + 
+  geom_histogram() +
+  facet_wrap(~Diet, scales="free_y")
+
+```
+
+### Use geom_density to plot the density of weights coloring by Diet, and faceting by Time.
+```{r}
+ggplot(ChickWeight, aes(weight)) +
+  geom_density(aes(color=Diet)) +
+  facet_wrap(~Time, scales="free")
+```
+
+
+
+
+## Exercise: Boxplots
+### Plot a boxplot of ChickWeight were x is Time and y is Weight.
+```{r}
+ggplot(ChickWeight, aes(factor(Time), weight)) + # We use factor() because x variable for boxplots cannot be numeric/continuous!
+       geom_boxplot()
+```
+
+### Using the last boxplot, color groups according to the Diet.
+```{r}
+ggplot(ChickWeight, aes(factor(Time), weight)) + 
+       geom_boxplot(aes(color=Diet))
+```
+
+## Exercise: Correlations
+### Compare with a scatterplot the weigth of the chickens the first day (Time=0) and the last day (Time=21). Color the points according to the Diet
+
+```{r}
+chick <- ChickWeight[ChickWeight$Time==0 |
+                       ChickWeight$Time==21, ]
+chick.wide <- reshape2::dcast(chick, 
+                              Chick + Diet ~ Time,
+                              value.var = "weight")
+
+ggplot(chick.wide, aes(`0`, `21`)) + # If names of the columns are numbers you can use `` to call them as objects.
+  geom_point(aes(color=Diet))
+```
+
+
+# Your turn! If you have things you want me to explain or to try you can ask!
+

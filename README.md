@@ -31,7 +31,7 @@ This document links the materials of the sessions held by R-Ladies BCN.
   8. **Plots with `ggplot2` are better plots.**
       + *September 27th, 2017*
       + Presented by [Mireia Ramos](http://twitter.com/mirthelle)
-      + Materials: https://github.com/rladies/meetup_presentations_barcelona/bcn_20170927_ggplot2
+      + Materials: https://github.com/rladies/meetup-presentations_barcelona/tree/master/bcn_20170927_ggplot2
 
 ## Upcoming events
 

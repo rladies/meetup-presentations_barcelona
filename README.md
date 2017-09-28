@@ -28,6 +28,10 @@ This document links the materials of the sessions held by R-Ladies BCN.
       + *June 12th, 2017*
       + Presented by [Ania Alay](http://twitter.com/aniusbananius)
       + Materials: https://github.com/rladies/bcn_20170612_bioinformatics
+  8. **Plots with `ggplot2` are better plots.**
+      + *September 27th, 2017*
+      + Presented by [Mireia Ramos](http://twitter.com/mirthelle)
+      + Materials: https://github.com/rladies/meetup_presentations_barcelona/bcn_20170927_ggplot2
 
 ## Upcoming events
 

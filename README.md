@@ -32,8 +32,14 @@ This document links the materials of the sessions held by R-Ladies BCN.
       + *September 27th, 2017*
       + Presented by [Mireia Ramos](http://twitter.com/mirthelle)
       + Materials: https://github.com/rladies/meetup-presentations_barcelona/tree/master/bcn_20170927_ggplot2
+  9.  **Take your R scripts to a new planet: Jupyter notebooks with R!**
+      + *November 6th, 2017*
+      + Presented by [Claudia Millán](https://twitter.com/cheshireminima)
+      + Materials: Coming soon!
 
 ## Upcoming events
+
+See you in 2018 for more R-Ladies events! 
 
 ---
 

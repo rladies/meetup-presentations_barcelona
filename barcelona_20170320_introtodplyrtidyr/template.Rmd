@@ -1,0 +1,339 @@
+---
+title: "Domar datos con `dplyr` y `tidyr`"
+author: 'M. Salmon'
+date: '`r Sys.Date()`'
+
+output: 
+  revealjs::revealjs_presentation:
+    css: rladies_revealjs.css
+    highlight: pygments
+    transition: slide
+    
+---
+```{r}
+
+```
+
+
+# Introduction
+
+## What is the tidyverse?
+
+* Suite of R packages designed mostly by Hadley Wickham.
+
+* Designed to create a pit of success.
+
+* http://tidyverse.org/
+
+* *Data wrangling*, visualization, modeling, package development.
+
+## Why doing this tutorial?
+
+* Using `dplyr` and `tidyr` = easier than base R $.
+
+* An alternative to `dplyr` is `data.table`, maybe another tutorial?
+
+* Maybe a way for you to discover the tidyverse?
+
+# Now let's code!
+
+## Setup
+
+* `dplyr`, `tidyr` and `lubridate` installed?
+
+* Create a new .Rproj
+
+* Save the data in a data/ folder
+
+## Get a glimpse
+
+Quando has cargado datos en R, qué haces para ver lo que hay dientro? 
+
+## Get a glimpse
+
+```r
+library("dplyr")
+load("data/latestData.RData")
+class(latestData)
+print(latestData)
+latestData
+View(latestData)
+glimpse(latestData)
+summary(latestData)
+```
+
+## Add or remove columns
+
+En tu tabla tal vez hay columnas que no necesitas o quieres anadir algo, por ejemplo tienes una columna con nombres en letras minúsculas y la quieres con majusculas.
+
+
+## Add or remove columns
+
+```r
+# Tal vez no m'interessa algunas columnas
+latestData <- select(latestData, - cityURL, - locationURL, - longitude, - latitude)
+# Nueva variable con letras minúsculas
+latestData <- mutate(latestData,
+smallCountry = tolower(country))
+# Nueva variable 
+latestData <- mutate(latestData,
+biggerValue = value + 10)
+```
+
+
+## Add or remove rows
+
+Como puedes filtrar lineas que cumplen algunos criterios, o eliminar las lineas que hay mas de una vez.
+
+## Add or remove rows
+
+```r
+# O si quiero solo los datos (values) positivos
+filter(latestData, value > 0)
+# O solo las datos para Mongolia
+filter(latestData, country == "MN")
+# O solo las datos positivos para Mongolia
+filter(latestData, country == "MN", value > 0)
+
+filter(latestData, city %in% c("Ulaanbaatar", "Farmington"))
+```
+
+## Piping!
+
+Aqui miramos como el uso de tubos y tuberias hace tu codigo más legible
+
+## Piping!
+
+```r
+load("data/meas100ail.RData")
+
+# sin tubos
+meas100ail2 <- mutate(meas100ail, biggerValue = value + 10)
+meas100ail2 <- select(meas100ail2, - cityURL, - locationURL)
+meas100ail2 <- mutate(meas100ail2, countrySmall = tolower(country))
+meas100ail2 <- select(meas100ail2, - country)
+```
+
+## Piping!
+
+```r
+
+# con tubos
+meas100ail2 <- meas100ail %>%
+  mutate(biggerValue = value + 10) %>%
+  select(- cityURL, - locationURL) %>%
+  mutate(countrySmall = tolower(country)) %>%
+select(- country)
+```
+
+## Sort columns
+
+Tal vez es más facil para ti trabajar con la tabla si l'ultima columna es en otra posición.
+
+## Sort columns
+
+```r
+# I que hago yo si quiero tener lastUpdated y value al principio?
+latestData <-  select(latestData, lastUpdated, 
+value, 
+everything())
+
+# Qué pasa si no utilizo everything?
+select(latestData, lastUpdated, value)
+```
+
+## Arrange rows
+
+Aqui ves como puedes ordenar la tabla para tener por ejemplo los individuos mas pequeños al principio y los mas grandes al final.
+
+## Arrange rows
+
+```r
+# ordenar por value
+latestData <- arrange(latestData, value)
+
+# ordenar por longitude i después por latitude
+latestData <- arrange(latestData, 
+longitude, latitude)
+
+# ordenar por longitude del mas grande al mas grande i después por latitude
+latestData <- arrange(latestData,
+desc(longitude), 
+latitude)
+```
+
+## Work with groups
+
+Para ver como crear una nueva variable con valor que depiende de un grupo, por ejemplo en una tabla de individuos con varios grupos de edad, si quieres saber qué persona es la mas alta en cada grupo, la secunda mas alta, etc.
+
+## Work with groups
+
+```r
+# en cada pais, orden de value
+latestData %>%
+  group_by(country) %>% 
+  mutate(rankingValue = rank(value)) %>%
+  select(location, city, country, value, rankingValue) %>%
+  arrange(country) %>%
+  ungroup()
+```
+## Work with groups
+
+```r
+# ahora tal vez quiero ver la secunda "location" en cada pais
+latestData %>%
+  group_by(country) %>% 
+  mutate(rankingValue = rank(value)) %>%
+  select(location, city, country, value, rankingValue) %>%
+  arrange(country) %>%
+filter(rankingValue == 2)
+```
+
+## Summarize data
+
+Con dplyr es posible calcular por ejemplo la mediana de la edad en cada pais si tienes una tabla con las columnas individuo, pais, edad.
+
+## Summarize data
+
+```r
+# media para cada parametro
+meas100ail %>% 
+  group_by(parameter) %>% 
+  summarize(mean = mean(value))
+
+# o mas que la media
+meas100ail %>% 
+  group_by(parameter) %>% 
+  summarize(mean = mean(value),
+            min = min(value),
+max = max(value))
+```
+
+## Summarize data
+
+```r
+# es posible calcular la media para cada parametro i para cada año
+library("lubridate")
+meas100ail %>% 
+  mutate(year = year(dateLocal)) %>%
+  group_by(parameter, year) %>% 
+  summarize(mean = mean(value),
+            min = min(value),
+            max = max(value))
+
+```
+
+## Summarize data
+
+```r
+# si queremos también tener el numero de observaciones
+meas100ail %>% 
+  group_by(parameter) %>% 
+  summarize(mean = mean(value),
+            min = min(value),
+            max = max(value),
+n = n())
+```
+
+## Transform the table
+
+Eso es magia! Por ejemplo puedes transformar una tabla "wide" en una table "long".
+
+## Transform the table
+
+```r
+load("data/meas100ail.RData")
+# hay lineas repetidas
+meas100ail <- unique(meas100ail)
+# Qué hay aqui dientro?
+
+glimpse(meas100ail)
+
+# de long a wide
+widemeas <- spread(meas100ail, parameter, value)
+# si hago un error
+spread(meas100ail, value, parameter)
+```
+
+## Transform the table
+
+```r
+# de wide a long
+gather(widemeas, parameter, value, co:so2)
+# o si solo quiero lineas con value
+gather(widemeas, parameter, value, co:so2, na.rm = TRUE)
+
+```
+
+## Transform the table
+
+```r
+# date i time separados
+meas100ail <- separate(meas100ail, dateLocal, c("date", "time"), sep = " ")
+# de nuevo quiero que sea date i time
+library("lubridate")
+meas100ail <- mutate(meas100ail, date = as_date(ymd(date)),
+                                    time = hms(time))
+
+# value y unit juntos
+unite(meas100ail, niceValue, c(value, unit), sep = " ")
+```
+
+## Merge tables
+
+Un ejemplo es: tienes una tabla con la edad de individuos i su numero de identificación y otra tabla con el peso de individuos i su numero de identificación. Como creas una unica tabla con estas dos tablas?
+
+## Merge tables
+```r
+load("data/latestData.RData")
+load("data/countries.RData")
+load("data/moreData.RData")
+
+# anadir lineas
+bind_rows(latestData, moreData)
+# si no hay las mismas columnas
+latestData2 <- select(latestData, location, city)
+bind_rows(latestData2, moreData)
+```
+## Merge tables
+
+```r
+# anadir el nombre de los paisos
+glimpse(latestData)
+glimpse(countries)
+
+left_join(latestData, countries, by = c("country" = "code"))
+
+left_join(latestData, countries, by = c("country" = "code")) %>%
+  mutate(country = name) %>%
+select(- name)
+```
+
+## RStudio cheatsheet
+
+You can take it home!
+
+Any further question?
+
+# Announcements
+
+## RUG BCN on Wednesday!
+
+H2O Deep Water, 7:00 PM, Universitat Pompeu Fabra
+
+![corgi+party](https://media.giphy.com/media/kGdQPK7dcLKAE/giphy.gif)
+
+
+## April 24th
+
+Bokeh tutorial by Elena! 7:00PM, here
+
+![dance](https://media.giphy.com/media/l2JhL1AzTxORUTDlC/giphy.gif)
+
+## In May and beyond
+
+* Ania's proposals
+
+* What about YOU?
+
+![](https://media.giphy.com/media/vxVcOH94TV9VC/giphy.gif)

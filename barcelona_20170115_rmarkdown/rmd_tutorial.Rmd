@@ -1,0 +1,111 @@
+---
+title: "Introduction to RMarkdown"
+author: 'M. Salmon'
+date: '`r Sys.Date()`'
+
+output: 
+  revealjs::revealjs_presentation:
+    css: rladies_revealjs.css
+    highlight: pygments
+    transition: slide
+    
+---
+
+# Some announcements
+
+## {data-background="images/wwcodebcn.png"}
+
+## Asking for friends
+
+Interest in giving a talk/tutorial about data viz for PhD Students in February? Contact Carles Hernandez, carles.hernandez@isglobal.org
+
+
+## Asking for a friend...
+
+Still looking for R-Ladies speaker!
+
+# Why RMarkdown?
+
+## Let's watch a small video
+
+[here](https://www.youtube.com/watch?v=s3JldKoA0zw)
+
+## Any user here already?
+
+If so, let's talk about your experience!
+
+## Common workflow without RMarkdown
+
+* Script producing results and figures
+
+* Copy-paste into Word
+
+* Back and forth
+
+## RMarkdown
+
+* Code chunks and text in the same file.
+
+* Everything is then knitted into the final document!
+
+## One tool, many possible outputs {data-background="images/rmd_formats.png"}
+
+# How?
+
+## Let's go!
+
+* Create a new Rmd from RStudio
+
+* Knit the template
+
+* echo
+
+## Text structure 
+
+* Headers
+
+* Text style
+
+* Itemize
+
+## Pretty tables
+
+`knitr::kable`
+
+## Inline code
+
+Chunks vs. inline code.
+
+## Why it's better to name your chunks
+
+* navigation
+
+* de-bugging
+
+## Regression results
+
+The power of `broom`
+
+## Figure options 
+
+Control the size
+
+## Caching
+
+When your calculations are quite slow.
+
+# If we've got time
+
+## reveal.js
+
+We could try creating slides like these ones!
+
+# And after this small tutorial
+
+## List of resources
+
+* RMarkdown RStudio website: http://rmarkdown.rstudio.com
+
+* RMarkdown Cheatsheet
+
+* Do you want a R-Ladies Barcelona Slack team to ask your questions?

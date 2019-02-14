@@ -1,0 +1,79 @@
+---
+title: "Test report"
+author: "M. Salmon"
+date: "January 8, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## R Markdown
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+# Here is the first section
+
+## Here is the first sub-section
+
+I want to put *these words* in bold and _these ones_ in italic.
+
+I want this command to look like one `summary(cars)`.
+
+I also want to write a list
+
+- Element 1
+
+- Element 2
+
+# Now I want to show a table but in a pretty way
+```{r ugly table}
+head(cars)
+
+```
+
+
+```{r pretty table}
+knitr::kable(head(cars) )
+
+```
+
+What if I want to write in the text the size of my data? Better not to copy-paste. There are `r nrow(cars)` entries in my dataset.
+
+## Regression
+
+```{r regression}
+model <- lm(speed ~ dist, data = cars)
+model$coefficients
+library("broom")
+tidy(model)
+knitr::kable(tidy(model))
+
+summary(model)
+knitr::kable(glance(model))
+
+``` 
+
+## Figure options
+
+```{r fig1, fig.width = 5}
+
+plot(cars)
+```
+
+
+```{r fig2, fig.width = 10}
+
+plot(cars)
+```

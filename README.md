@@ -2,6 +2,10 @@
 
 This document links the materials of the sessions held by R-Ladies Barcelona. 
 
+## Upcoming events
+
+Stay tunned for September upcoming events!
+
 ## Past events
   1. **Primer evento de R-Ladies Barcelona**
        + *November 21st, 2016*
@@ -47,10 +51,12 @@ This document links the materials of the sessions held by R-Ladies Barcelona.
       + Presented by [Mireia Ramos](https://twitter.com/mireia_bioinfo)
       + Materials: https://github.com/rladies/meetup-presentations_barcelona/tree/master/barcelona_20190213_rladiesRelaunch
       + [Meetup event](https://www.meetup.com/rladies-barcelona/events/258328098/)
-
-## Upcoming events
-
-Planning March's Meetup :D
+  11. **Introduction to R programming**
+      + *March 28th, 2019*
+      + Presented by [Natalia Vilor-Tejedor](https://twitter.com/natvilortejedor)
+      + **Fast Talk**: Version control with git and RStudio by [Maria Noguera](https://twitter.com/maria__noguera)
+      + Materials: https://github.com/rladies/meetup-presentations_barcelona/tree/master/barcelona_20190328_introR
+      + [Meetup event](https://www.meetup.com/rladies-barcelona/events/259892732/)
 
 ---
 

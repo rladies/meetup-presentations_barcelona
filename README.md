@@ -61,7 +61,7 @@ This document links the materials and sessions held by R-Ladies Barcelona.
   - **RMarkdown tutorial and bioinformatics talk**
       + *January 16th, 2017*
       + Presented by [Dr. Maëlle Salmon](http://www.masalmon.eu/)
-      + Materials: https://github.com/rladies/meetup-presentations_barcelona/tree/master/20170116_rmarkdown
+      + Materials: https://github.com/rladies/meetup-presentations_barcelona/tree/master/20170115_rmarkdown
       + [Meetup event](https://www.meetup.com/rladies-barcelona/events/236372088/)
 
 ## 2016

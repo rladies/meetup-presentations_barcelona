@@ -5,17 +5,20 @@
 This document links the materials and sessions held by R-Ladies Barcelona. 
 
 ## Upcoming events
+  - **Introduction to the `tidyverse`**
+      + *November 14th, 2019*
+      + Presented by [Sarah Bonnin](https://twitter.com/SarahFBonnin)
+      + Materials: https://sarahbonnin.github.io/RLadies_Tidyverse
+      + [Meetup event](https://www.meetup.com/rladies-barcelona/events/265903175/
+  - **Reporting results with `rmarkdown`**
+      + *December 12th, 2019*
 
+## 2019
   - **Improve your plots with `ggplot2`**
       + *October 15th, 2019*
       + Presented by [Mireia Ramos](https://twitter.com/mireia_bioinfo)
-  - **Introduction to the `tidyverse`**
-      + *November TBD, 2019*
-      + Presented by Sarah Bonnin.
-  - **Reporting results with `rmarkdown`**
-      + *December TBD, 2019*
-
-## 2019
+      + Materials: https://github.com/mireia-bioinfo/workshop_ggplot2
+      + [Meetup event](https://www.meetup.com/rladies-barcelona/events/264920033/)
   - **Road to Data Science**
       + *September 16th, 2019*
       + Presented by Judit Guimera Busquets

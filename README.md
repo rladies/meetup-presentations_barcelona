@@ -15,8 +15,6 @@ This document links the materials and sessions held by R-Ladies Barcelona.
       + Presented by [Sarah Bonnin](https://twitter.com/SarahFBonnin)
       + Materials: https://sarahbonnin.github.io/RLadies_Tidyverse
       + [Meetup event](https://www.meetup.com/rladies-barcelona/events/265903175/)
-  - **Reporting results with `rmarkdown`**
-      + *December 12th, 2019*
   - **Improve your plots with `ggplot2`**
       + *October 15th, 2019*
       + Presented by [Mireia Ramos](https://twitter.com/mireia_bioinfo)

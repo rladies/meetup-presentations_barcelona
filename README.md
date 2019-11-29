@@ -5,6 +5,11 @@
 This document links the materials and sessions held by R-Ladies Barcelona. 
 
 ## Upcoming events
+  - **Reporting results with `rmarkdown` and friends**
+      + *December 12th, 2019*
+      + Presented by TBC    
+
+## 2019
   - **Introduction to the `tidyverse`**
       + *November 14th, 2019*
       + Presented by [Sarah Bonnin](https://twitter.com/SarahFBonnin)
@@ -12,8 +17,6 @@ This document links the materials and sessions held by R-Ladies Barcelona.
       + [Meetup event](https://www.meetup.com/rladies-barcelona/events/265903175/)
   - **Reporting results with `rmarkdown`**
       + *December 12th, 2019*
-
-## 2019
   - **Improve your plots with `ggplot2`**
       + *October 15th, 2019*
       + Presented by [Mireia Ramos](https://twitter.com/mireia_bioinfo)

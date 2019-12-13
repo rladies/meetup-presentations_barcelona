@@ -5,11 +5,18 @@
 This document links the materials and sessions held by R-Ladies Barcelona. 
 
 ## Upcoming events
-  - **Reporting results with `rmarkdown` and friends**
-      + *December 12th, 2019*
+  - **Forecasting for the business enterprise.**
+      + *January 21rst, 2020*
       + Presented by TBC    
 
 ## 2019
+  - **Introduction to {rmarkdown} & friends.**
+      + *December 12th, 2019*
+      + Workshop on RMarkdown presented by [Sarah Bonnin](https://twitter.com/SarahFBonnin)
+          + Material: https://sarahbonnin.github.io/RLadies_Rmarkdown
+      + {rmarkdown} extensions presented by [Ania Alay](http://twitter.com/aniabmsi)
+          + Material: https://aniabmsi.github.io/RLadiesBCN_20191212_RmdFlashTalk/20191212_RLadies_RmdExtensions.html
+      + [Meetup event](https://www.meetup.com/rladies-barcelona/events/266783453)
   - **Introduction to the `tidyverse`**
       + *November 14th, 2019*
       + Presented by [Sarah Bonnin](https://twitter.com/SarahFBonnin)

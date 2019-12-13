@@ -10,7 +10,7 @@ This document links the materials and sessions held by R-Ladies Barcelona.
       + Presented by TBC    
 
 ## 2019
-  - **Introduction to {rmarkdown} & friends.**
+  - **Introduction to `rmarkdown` & friends.**
       + *December 12th, 2019*
       + Workshop on RMarkdown presented by [Sarah Bonnin](https://twitter.com/SarahFBonnin)
           + Material: https://sarahbonnin.github.io/RLadies_Rmarkdown

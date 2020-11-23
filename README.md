@@ -10,6 +10,7 @@ This document links the materials and sessions held by R-Ladies Barcelona.
     + Speaker Sara Tous
     + Materials: https://github.com/rladies/meetup-presentations_barcelona/tree/master/20201119_epidemiologia_tributo_nightingale
     + Organizers: R-Ladies, Societat Catalana de Estadística (SoCE), Sociedad Española de Bioestadística (SEB)
+    + Meetup video: [Download](https://wetransfer.com/downloads/c9d122b28a7a80b1d30fd155b2c9c4a520201120104455/28e20da585d3b84d2c9da8e990c65e0920201120104455/4c4ba7)
     
   - **Forecasting for the business enterprise.**
       + *January 21rst, 2020*

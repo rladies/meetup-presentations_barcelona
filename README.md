@@ -8,6 +8,7 @@ This document links the materials and sessions held by R-Ladies Barcelona.
   - **Epidemiología y R - Tributo a Florence Nightingale**
     + *November 19th, 2020* 
     + Speaker Sara Tous
+    + Materials: https://github.com/rladies/meetup-presentations_barcelona/tree/master/20201119_epidemiologia_tributo_nightingale
     + Organizers: R-Ladies, Societat Catalana de Estadística (SoCE), Sociedad Española de Bioestadística (SEB)
     
   - **Forecasting for the business enterprise.**

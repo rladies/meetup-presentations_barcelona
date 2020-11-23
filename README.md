@@ -4,7 +4,12 @@
 
 This document links the materials and sessions held by R-Ladies Barcelona. 
 
-## Upcoming events
+## 2020
+  - **Epidemiología y R - Tributo a Florence Nightingale**
+    + *November 19th, 2020* 
+    + Speaker Sara Tous
+    + Organizers: R-Ladies, Societat Catalana de Estadística (SoCE), Sociedad Española de Bioestadística (SEB)
+    
   - **Forecasting for the business enterprise.**
       + *January 21rst, 2020*
       + Presented by TBC    
